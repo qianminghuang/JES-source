@@ -1,0 +1,42 @@
+DEBUG 2020-02-11 15:07:53.892 UTC: 	 Running on: Linux lxplus602.cern.ch 2.6.32-754.27.1.el6.x86_64 #1 SMP Wed Jan 29 10:28:48 CET 2020 x86_64 x86_64 x86_64 GNU/Linux - Scientific Linux CERN SLC release 6.10 (Carbon)
+DEBUG 2020-02-11 15:07:53.918 UTC: 	 OpenSSl version: OpenSSL 1.0.1e-fips 11 Feb 2013
+DEBUG 2020-02-11 15:07:53.919 UTC: 	 Executing command: 'submit'
+DEBUG 2020-02-11 15:07:53.919 UTC: 	 Found CRAB cache file /afs/cern.ch/user/q/qihuang/.crab3
+DEBUG 2020-02-11 15:07:53.929 UTC: 	 Checking credentials
+DEBUG 2020-02-11 15:07:53.929 UTC: 	 Found proxy file /tmp/x509up_u91611
+DEBUG 2020-02-11 15:07:53.929 UTC: 	 Getting proxy life time left
+DEBUG 2020-02-11 15:07:55.051 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u91611 -timeleft
+ output : 35327
+
+ error: 
+ retcode : 0
+DEBUG 2020-02-11 15:07:56.076 UTC: 	 Executing : 
+ command : voms-proxy-info -file /tmp/x509up_u91611 -actimeleft
+ output : 35326
+
+ error: 
+ retcode : 0
+DEBUG 2020-02-11 15:07:56.077 UTC: 	 Proxy lifetime 35327 secs is different from voms extension lifetime 35326 secs for proxy: /tmp/x509up_u91611
+DEBUG 2020-02-11 15:07:56.077 UTC: 	 Proxy valid for 09:48:46 hours
+INFO 2020-02-11 15:07:56.077 UTC: 	 Will use CRAB configuration file Wcrab/crab3_analysisWAJJ.py
+DEBUG 2020-02-11 15:07:56.077 UTC: 	 Loading CRAB configuration file.
+DEBUG 2020-02-11 15:07:56.111 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2020-02-11 15:07:56.111 UTC: 	 Task requests 10000 MB of memory, above the allowed maximum of 5000 for a 1 core(s) job.
+
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+ERROR 2020-02-11 15:07:56.111 UTC: 	 Caught exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 160, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/bin/crab", line 145, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/submit.py", line 35, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    self.loadConfig(self.options.config, self.args)
+  File "/cvmfs/cms.cern.ch/crab3/slc6_amd64_gcc493/cms/crabclient/3.3.2001/lib/python2.7/site-packages/CRABClient/Commands/SubCommand.py", line 93, in loadConfig
+    raise ConfigurationException(configmsg)
+ConfigurationException: Task requests 10000 MB of memory, above the allowed maximum of 5000 for a 1 core(s) job.
+
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
