@@ -215,12 +215,17 @@ double Dphiwajj,Dphiwajj_f;
 
 // jes source
 
-double AbsoluteStat_unc,AbsoluteScale_unc,AbsoluteFlavMap_unc,AbsoluteMPFBias_unc,Fragmentation_unc,SinglePionECAL_unc,SinglePionHCAL_unc,FlavorQCD_unc,TimePtEta_unc,RelativeJEREC1_unc,RelativeJEREC2_unc;
-double RelativeJERHF_unc,RelativePtBB_unc,RelativePtEC1_unc,RelativePtEC2_unc,RelativePtHF_unc,RelativeBal_unc,RelativeFSR_unc,RelativeStatFSR_unc,RelativeStatEC_unc,RelativeStatHF_unc,PileUpDataMC_unc; 
-double PileUpPtRef_unc,PileUpPtBB_unc,PileUpPtEC1_unc,PileUpPtEC2_unc,PileUpPtHF_unc,PileUpMuZero_unc,PileUpEnvelope_unc,SubTotalPileUp_unc,SubTotalRelative_unc,SubTotalPt_unc,SubTotalScale_unc;
-double SubTotalAbsolute_unc,SubTotalMC_unc,Total_unc,TotalNoFlavor_unc,TotalNoTime_unc,TotalNoFlavorNoTime_unc,FlavorZJet_unc,FlavorPhotonJet_unc,FlavorPureGluon_unc,FlavorPureQuark_unc,FlavorPureCharm_unc;
-double FlavorPureBottom_unc,TimeRunBCD_unc,TimeRunEF_unc,TimeRunG_unc,TimeRunH_unc,CorrelationGroupMPFInSitu_unc,CorrelationGroupIntercalibration_unc,CorrelationGroupbJES_unc;
-double CorrelationGroupFlavor_unc,CorrelationGroupUncorrelated_unc,sum_jes_unc;
+//double AbsoluteStat_unc,AbsoluteScale_unc,AbsoluteFlavMap_unc,AbsoluteMPFBias_unc,Fragmentation_unc,SinglePionECAL_unc,SinglePionHCAL_unc,FlavorQCD_unc,TimePtEta_unc,RelativeJEREC1_unc,RelativeJEREC2_unc;
+//double RelativeJERHF_unc,RelativePtBB_unc,RelativePtEC1_unc,RelativePtEC2_unc,RelativePtHF_unc,RelativeBal_unc,RelativeFSR_unc,RelativeStatFSR_unc,RelativeStatEC_unc,RelativeStatHF_unc,PileUpDataMC_unc; 
+//double PileUpPtRef_unc,PileUpPtBB_unc,PileUpPtEC1_unc,PileUpPtEC2_unc,PileUpPtHF_unc,PileUpMuZero_unc,PileUpEnvelope_unc,SubTotalPileUp_unc,SubTotalRelative_unc,SubTotalPt_unc,SubTotalScale_unc;
+//double SubTotalAbsolute_unc,SubTotalMC_unc,Total_unc,TotalNoFlavor_unc,TotalNoTime_unc,TotalNoFlavorNoTime_unc,FlavorZJet_unc,FlavorPhotonJet_unc,FlavorPureGluon_unc,FlavorPureQuark_unc,FlavorPureCharm_unc;
+//double FlavorPureBottom_unc,TimeRunBCD_unc,TimeRunEF_unc,TimeRunG_unc,TimeRunH_unc,CorrelationGroupMPFInSitu_unc,CorrelationGroupIntercalibration_unc,CorrelationGroupbJES_unc;
+//double CorrelationGroupFlavor_unc,CorrelationGroupUncorrelated_unc,sum_jes_unc;
+
+double jet1_jes_source_up[54];
+double jet1_jes_source_down[54];
+double jet2_jes_source_up[54];
+double jet2_jes_source_down[54];
 
 //jes source
 
@@ -588,6 +593,8 @@ outTree_->Branch("nVtx"            ,&nVtx           ,"nVtx/I"           );
   outTree_->Branch("pileupWeight"    ,&pileupWeight   ,"pileupWeight/D"   );
 
 
+// jes source
+/*
   outTree_->Branch("sum_jes_unc"          ,&sum_jes_unc         ,"sum_jes_unc/D"         );
   outTree_->Branch("CorrelationGroupUncorrelated_unc"          ,&CorrelationGroupUncorrelated_unc         ,"CorrelationGroupUncorrelated_unc/D"         );
   outTree_->Branch("CorrelationGroupFlavor_unc"          ,&CorrelationGroupFlavor_unc         ,"CorrelationGroupFlavor_unc/D"         );
@@ -643,7 +650,12 @@ outTree_->Branch("nVtx"            ,&nVtx           ,"nVtx/I"           );
   outTree_->Branch("AbsoluteFlavMap_unc"          ,&AbsoluteFlavMap_unc         ,"AbsoluteFlavMap_unc/D"         );
   outTree_->Branch("AbsoluteScale_unc"          ,&AbsoluteScale_unc         ,"AbsoluteScale_unc/D"         );
   outTree_->Branch("AbsoluteStat_unc"          ,&AbsoluteStat_unc         ,"AbsoluteStat_unc/D"         );
-
+*/
+// jes source
+  outTree_->Branch("jet1_jes_source_up"        , jet1_jes_source_up       ,"jet1_jes_source_up[54]/D"       );
+  outTree_->Branch("jet1_jes_source_down"        , jet1_jes_source_down       ,"jet1_jes_source_down[54]/D"       );
+  outTree_->Branch("jet2_jes_source_up"        , jet2_jes_source_up       ,"jet2_jes_source_up[54]/D"       );
+  outTree_->Branch("jet2_jes_source_down"        , jet2_jes_source_down       ,"jet2_jes_source_down[54]/D"       );
 
 }
 
@@ -1588,7 +1600,7 @@ for (int isrc = 0; isrc < nsrc; isrc++) {
 } 
 
 // Total uncertainty for reference
-JetCorrectionUncertainty *total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("CMSSW_8_0_32/src/L1Prefiring/EventWeightProducer/data/Summer16_23Sep2016V4_MC_UncertaintySources_AK4PFchs.txt", "Total")));
+//JetCorrectionUncertainty *total = new JetCorrectionUncertainty(*(new JetCorrectorParameters("CMSSW_8_0_32/src/L1Prefiring/EventWeightProducer/data/Summer16_23Sep2016V4_MC_UncertaintySources_AK4PFchs.txt", "Total")));
 
 
 
@@ -1597,25 +1609,25 @@ JetCorrectionUncertainty *total = new JetCorrectionUncertainty(*(new JetCorrecto
 // jes source 54
 
 for (int isrc = 0; isrc < nsrc; isrc++) {
-	if(isrc==35)continue;
+	//if(isrc==35)continue;
 
 	double sum2_up = 0.0;
 
       JetCorrectionUncertainty *unc = vsrc[isrc];
       unc->setJetPt(jet1pt);
       unc->setJetEta(jet1eta);
-      double sup1 = unc->getUncertainty(true); // up variation
-      sum2_up += pow(sup1,2);
-sum_jes_unc +=pow(sup1,2);
+      jet1_jes_source_up[isrc] = unc->getUncertainty(true); // up variation
+      jet1_jes_source_down[isrc] = unc->getUncertainty(false); // down variation
+
 
       unc->setJetPt(jet2pt);
       unc->setJetEta(jet2eta);
-      double sup2 = unc->getUncertainty(true); // up variation
-//      double sdw = unc->getUncertainty(false); // down variation
-      sum2_up += pow(sup2,2);
-sum_jes_unc +=pow(sup2,2);
-//      sum2_dw += pow(min(sup,sdw),2);
+      jet2_jes_source_up[isrc] = unc->getUncertainty(true); // up variation
+      jet2_jes_source_down[isrc] = unc->getUncertainty(false); // down variation
 
+
+
+/*
 if(isrc==0)AbsoluteStat_unc = sum2_up;
 if(isrc==1)AbsoluteScale_unc = sum2_up;
 if(isrc==2)AbsoluteFlavMap_unc = sum2_up;
@@ -1670,9 +1682,11 @@ if(isrc==50)CorrelationGroupIntercalibration_unc = sum2_up;
 if(isrc==51)CorrelationGroupbJES_unc = sum2_up;
 if(isrc==52)CorrelationGroupFlavor_unc = sum2_up;
 if(isrc==53)CorrelationGroupUncorrelated_unc = sum2_up;
+*/
 
 } 
 
+/*
 total->setJetPt(jet1pt);
 total->setJetEta(jet1eta);
 double uncert = total->getUncertainty(true);
@@ -1682,7 +1696,7 @@ total->setJetPt(jet2pt);
 total->setJetEta(jet2eta);
  uncert = total->getUncertainty(true);
 Total_unc +=pow(uncert,2);
-
+*/
 
 // jes source
          }
@@ -1744,7 +1758,7 @@ Total_unc +=pow(uncert,2);
 void PKUTreeMaker::setDummyValues() {
 
 // jes source
-
+/*
  AbsoluteStat_unc =0.0;
  AbsoluteScale_unc =0.0;
  AbsoluteFlavMap_unc =0.0;
@@ -1800,7 +1814,15 @@ void PKUTreeMaker::setDummyValues() {
  CorrelationGroupFlavor_unc =0.0;
  CorrelationGroupUncorrelated_unc =0.0;
  sum_jes_unc =0.0;
- 
+ */
+
+     for(int i=0; i<54; i++) {
+	jet1_jes_source_up[i] = -10;
+	jet1_jes_source_down[i] = -10;
+	jet2_jes_source_up[i] = -10;
+	jet2_jes_source_down[i] = -10;
+				}
+
 
 // jes source
 
